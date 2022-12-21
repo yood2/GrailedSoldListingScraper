@@ -20,8 +20,8 @@ def link_pull(driver):
     1. Get the total number of listings
     '''
     try:
-        element = WebDriverWait(driver, 100).until(
-            EC.visibility_of_element_located((By.XPATH, "/html/body/div[1]/div/main/div[2]/div[2]/div/div[1]/div[1]/div[1]/div/span"))
+        element = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, "/html/body/div[3]/div[7]/div/div/div/div[1]/div[1]/div[1]/div/span"))
         )
         total_listings = int(((element.text.split())[0]).replace(',', ''))
         print(total_listings)
@@ -116,11 +116,11 @@ def data_pull(driver):
             writer.writerow(item)
 
 def main():
-    url = "https://www.grailed.com/designers/yohji-yamamoto/tops"
+    url = "https://www.grailed.com/sold"
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get(url)
     
-    #user_login(driver)
+    time.sleep(200)
     link_pull(driver)
     data_pull(driver)
 
