@@ -77,7 +77,7 @@ def link_pull(driver):
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(SCROLL_PAUSE_TIME)
         elements = driver.find_elements(By.CLASS_NAME, "feed-item")
-        loaded_listings = len(elements)
+        loaded_listings = int(len(elements))
         if loaded_listings == total_listings:
             print("> Found all listings, stopping scroll")
             break
@@ -204,11 +204,11 @@ def main():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get(url)
     
-    user_login(driver)
-    if input("> Pausing: Type 'Y' to continue: ") == 'Y':
-        print("> Resuming...")
-        link_pull(driver)
-        data_pull(driver)
+    #user_login(driver)
+    #if input("> Pausing: Type 'Y' to continue: ") == 'Y':
+        #print("> Resuming...")
+        #link_pull(driver)
+    data_pull(driver)
 
 if __name__ == "__main__":
     main()
